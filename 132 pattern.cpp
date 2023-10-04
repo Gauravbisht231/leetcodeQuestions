@@ -3,13 +3,14 @@ public:
     bool find132pattern(vector<int>& nums) {
         int n = nums.size();
         
-        
-        // O(N3) approach
-        for(int i=0; i<n-2; i++){
-            for(int j=i+1; j<n-1; j++){
-                for(int k=j+1; k<n; k++){
-                        if((nums[i]< nums[k] ) and (nums[k]< nums[j]))return true;
-                }
+        //  num[1]< num[3]<num[2]
+
+        // O(N2) approach
+        int num1= nums[0];
+        for(int j=1; j<n-1; j++){
+            num1= min(num1, nums[j]);
+            for(int k=j+1; k<n; k++){
+                if(num1 < nums[k] and nums[k]< nums[j]) return true;
             }
         }
 
