@@ -4,16 +4,20 @@ public:
         int n = nums.size();
         
         //  num[1]< num[3]<num[2]
+    //  O(N) approach ---- stack
+    int num3= INT_MIN;
+    stack<int> st;
 
-        // O(N2) approach
-        int num1= nums[0];
-        for(int j=1; j<n-1; j++){
-            num1= min(num1, nums[j]);
-            for(int k=j+1; k<n; k++){
-                if(num1 < nums[k] and nums[k]< nums[j]) return true;
-            }
+    for(int i= n-1; i>=0; i--){
+        if(nums[i]< num3) return true;
+
+        while(!st.empty() and nums[i]> st.top()){
+             num3= st.top();
+             st.pop();
         }
+        st.push(nums[i]);
 
-        return false;
+    }
+      return false;
     }
 };
