@@ -5,6 +5,7 @@ public:
         
         //  num[1]< num[3]<num[2]
     //  O(N) approach ---- stack
+    int x=54;
     int num3= INT_MIN;
     stack<int> st;
 
