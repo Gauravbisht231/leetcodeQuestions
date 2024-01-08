@@ -1,23 +1,21 @@
-// brute force solution
+    // Optimal approach
 class Solution {
-public:
-   vector<int> elements;
-   void helper(TreeNode* root){
-        if(!root)return;
-        elements.push_back(root->val);
-        if(root->left) helper(root->left);
-        if(root->right) helper(root->right);
-        return;
-   }
-    int rangeSumBST(TreeNode* root, int lo, int hi) {
-        // [lo, hi]
-     helper(root);
-    //  sort(elements.begin(), elements.end());
-     int sum=0;
-     for(auto it: elements){
-         if(it>=lo and it<= hi) sum+=it;
+private:
+void helper(int lo, int hi, TreeNode* root, int &sum){
+    if(!root) return ;
+    if(root->val >= lo and root->val<= hi){
+     sum+= root->val ;
+     helper(lo, hi, root->left , sum);
+     helper(lo, hi, root->right, sum);
      }
-     return sum;
-
+    else if(root->val> hi) helper(lo, hi, root->left, sum);
+    else helper(lo, hi, root->right, sum);
+    return;
+}
+public:
+    int rangeSumBST(TreeNode* root, int l, int h) {
+    int sum=0;
+    helper(l,h,root, sum);
+    return sum;   
     }
 };
