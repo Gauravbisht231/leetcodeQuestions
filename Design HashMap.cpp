@@ -1,4 +1,6 @@
-lass MyHashMap {
+#include<bits/stdc++.h>
+using namespace std;
+class MyHashMap {
     //          using custom Hashfunction-- bucket method
 public:
 vector<list<pair<int, int>>> buck;
